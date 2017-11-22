@@ -7,7 +7,7 @@ module.exports = function (app) {
 		gameSettingsService.findSettings().then(function([first, second]) {
 			var settings = {
 				listKeywordHelp: first,
-				numberKeywordGame: second
+				numberKeywordGame: second[0]
 			}
 			res.json(settings); 
 		});

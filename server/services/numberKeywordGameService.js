@@ -5,7 +5,7 @@ module.exports = {
 	save: function (numberKeywordGame) {
 		if (numberKeywordGame && numberKeywordGame.nrQuantityKeyword) {
 
-			NumberKeywordGame.create(req.body, function (err, numberKeywordGame) {
+			NumberKeywordGame.create(numberKeywordGame, function (err, numberKeywordGame) {
 				if (err)
 				console.log("errro")
 			});
