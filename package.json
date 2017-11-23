@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "body-parser": "^1.17.2",
+    "btoa": "^1.1.2",
     "express": "^4.7.4",
     "mongoose": "^4.11.10",
     "request": "^2.83.0",

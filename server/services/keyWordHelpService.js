@@ -37,21 +37,7 @@ module.exports = {
 	},
 	
 	getListKeywordsWithHelp: function(listKeywordHelp) {
-		return listKeywordHelp.filter((key) => key.dsHelp != null).map((key) => key.dsKeyword)
-	},
-
-	randomKeywords: function (listKeyword, number) {
-		function random_item(items) {
-			return items[Math.floor(Math.random() * items.length)];
-		}
-		var listRandomKeywordHelp = []
-		
-		for (i = 0; i < number; i++) {
-			var random = random_item(listKeyword)
-			listKeyword.splice(random, 1)
-			listRandomKeywordHelp.push(random)
-		}
-		return listRandomKeywordHelp;
+		return listKeywordHelp.filter((key) => key.dsHelp != null)
 	},
 
 	maxSizeWord: function (listKeyword) {

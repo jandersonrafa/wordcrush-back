@@ -1,6 +1,7 @@
 var keyWordHelpService = require('./keyWordHelpService');
 var numberKeywordGameService = require('./numberKeywordGameService');
-
+var randomService = require('./randomService');
+var btoa = require('btoa')
 
 module.exports = {
 
@@ -10,21 +11,34 @@ module.exports = {
 				var number = listNumber[0] ? listNumber[0].nrQuantityKeyword : 0
 				
 				// Random keywords
-				var listKeywordWithHelp = keyWordHelpService.getListKeywordsWithHelp(listKeyWordHelp)
-				if (!number || listKeywordWithHelp.length < number) {
+				var listKeywordHelpWithHelp = keyWordHelpService.getListKeywordsWithHelp(listKeyWordHelp)
+				if (!number || listKeywordHelpWithHelp.length < number) {
 					throw new Error("Não é possível iniciar o jogo!");
 				}
-				var listRandomKeywordHelp = keyWordHelpService.randomKeywords(listKeywordWithHelp, number)
-				var maxSizeWords = keyWordHelpService.maxSizeWord(listKeywordWithHelp)
+				var listRandomKeywordHelp = randomService.randomFromArray(listKeywordHelpWithHelp, number)
+				var listRandomKeywords = listRandomKeywordHelp.map((key) => key.dsKeyword)
+				var maxSizeWords = keyWordHelpService.maxSizeWord(listRandomKeywords)
+				var positionsMatriz = maxSizeWords * maxSizeWords
+				var listCharactersKeywords = listRandomKeywords.join("").split("")
+				var listAlphabetich = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split("")
+				var listRandomCharacters = randomService.randomRepeatFromArray(listAlphabetich, positionsMatriz - listCharactersKeywords.length)
+				
+				var listAllCharacteres = listRandomCharacters.concat(listCharactersKeywords)
+				var listRandomAllCharacters = randomService.randomFromArray(listAllCharacteres, listAllCharacteres.length)
+
 				// 
-				var listCharacters = []
+				
+				var mapCharacters = []
+				while(listRandomAllCharacters.length) {
+					mapCharacters.push(listRandomAllCharacters.splice(0,maxSizeWords));
+				}
 
 				var settings = {
 					nrQuantityKeyword: number,
-					listRandomKeywordHelp: listRandomKeywordHelp,
-					listCharacters: listCharacters
+					listRandomKeywordHelp: listRandomKeywords,
+					mapCharacters: mapCharacters
 				}
-				res.json(settings);
+				res.json(btoa(JSON.stringify(settings)));
 			})
 		})
 	},
