@@ -9,7 +9,7 @@ module.exports = {
 		keyWordHelpService.findAll().then((listKeyWordHelp) => {
 			numberKeywordGameService.load().then((listNumber) => {
 				var number = listNumber[0] ? listNumber[0].nrQuantityKeyword : 0
-				
+
 				// Random keywords
 				var listKeywordHelpWithHelp = keyWordHelpService.getListKeywordsWithHelp(listKeyWordHelp)
 				if (!number || listKeywordHelpWithHelp.length < number) {
@@ -22,15 +22,16 @@ module.exports = {
 				var listCharactersKeywords = listRandomKeywords.join("").split("")
 				var listAlphabetich = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split("")
 				var listRandomCharacters = randomService.randomRepeatFromArray(listAlphabetich, positionsMatriz - listCharactersKeywords.length)
-				
+
 				var listAllCharacteres = listRandomCharacters.concat(listCharactersKeywords)
 				var listRandomAllCharacters = randomService.randomFromArray(listAllCharacteres, listAllCharacteres.length)
 
 				// 
-				
+
 				var mapCharacters = []
-				while(listRandomAllCharacters.length) {
-					mapCharacters.push(listRandomAllCharacters.splice(0,maxSizeWords));
+				while (listRandomAllCharacters.length) {
+					var list = listRandomAllCharacters.splice(0, maxSizeWords)
+					mapCharacters.push(list.map((kw) => { return { character: kw, selected: false } }));
 				}
 
 				var settings = {
