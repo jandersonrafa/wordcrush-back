@@ -36,7 +36,7 @@ module.exports = {
 
 				var settings = {
 					nrQuantityKeyword: number,
-					listRandomKeywordHelp: listRandomKeywords,
+					listRandomKeywordHelp: listRandomKeywordHelp,
 					mapCharacters: mapCharacters
 				}
 				res.json(btoa(JSON.stringify(settings)));
