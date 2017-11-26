@@ -13,7 +13,8 @@ module.exports = {
 				// Random keywords
 				var listKeywordHelpWithHelp = keyWordHelpService.getListKeywordsWithHelp(listKeyWordHelp)
 				if (!number || listKeywordHelpWithHelp.length < number) {
-					throw new Error("Não é possível iniciar o jogo!");
+					res.json(500, { error: 'Não é possível iniciar o jogo!' })
+					res.end() 
 				}
 				var listRandomKeywordHelp = randomService.randomFromArray(listKeywordHelpWithHelp, number)
 				var listRandomKeywords = listRandomKeywordHelp.map((key) => key.dsKeyword)

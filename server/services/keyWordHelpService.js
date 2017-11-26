@@ -37,7 +37,7 @@ module.exports = {
 	},
 	
 	getListKeywordsWithHelp: function(listKeywordHelp) {
-		return listKeywordHelp.filter((key) => key.dsHelp != null)
+		return listKeywordHelp.filter((key) => key.dsHelp != null && key.dsHelp != "")
 	},
 
 	maxSizeWord: function (listKeyword) {
