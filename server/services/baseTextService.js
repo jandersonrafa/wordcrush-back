@@ -14,7 +14,7 @@ module.exports = {
 						dsKeyword: word.toUpperCase()
 					}
 				}).filter((kh) => {
-					var blPalavraCompostaOuComTraco = kh.dsKeyword.indexOf("-") || kh.dsKeyword.indexOf(" ")
+					var blPalavraCompostaOuComTraco = kh.dsKeyword.indexOf("-") > -1 || kh.dsKeyword.indexOf(" ") > -1
 					return kh.dsKeyword && !blPalavraCompostaOuComTraco
 				})
 				keyWordHelpService.deleteAll()

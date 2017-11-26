@@ -15,6 +15,7 @@ module.exports = function (app) {
 
 	app.post(BASE_URL + '/save', function (req, res) {
 		gameSettingsService.save(req.body)
+		res.json("sucesso")
 	});
 
 };
